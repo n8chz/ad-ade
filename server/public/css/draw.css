@@ -1,0 +1,7 @@
+body 			{ margin:0; padding:0;}
+#controls 		{ padding:0 0 8px 10px; border-bottom:2px solid #ccc; font-size: 60%;}
+.color 			{ display:inline-block; width:12px; height:12px; margin:5px 15px 0 0; border:2px solid #ccc; cursor:pointer; opacity:0.3 }
+.color.active	{ opacity:1; }
+#opacity {width: 25px; font-size: 80%; }
+#opacityGroup {}
+#userCountWrapper {display:inline-block; margin-right: 3px;}

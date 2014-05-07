@@ -1,0 +1,41 @@
+doctype 5
+html(lang="en")
+    head
+        script(src="/socket.io/socket.io.js",type="text/javascript")
+        script(src="../common/js/jquery-1.8.2.min.js",type="text/javascript")
+        script(type="text/javascript")
+
+            var socket = io.connect('/_socketdemo');
+
+            socket.on('requestinit', function(data){
+                var width = $('#width').val();
+                var height = $('#height').val();
+                var location = $('#location').val();
+                socket.emit('init',{width: width, height: height, location: location});
+            });
+
+            socket.on('newmsg',function(data){
+                $("#message").text(data.text);
+            });
+
+            $(document).ready(function(){
+                $("#msgform").submit(function(){
+
+                    socket.emit('msg', {text: $('#synctext').val()});
+
+                    return false;
+                });
+            });
+    body
+        div
+            span
+                | Last message
+            br
+            span#message
+        
+        form#msgform
+            input(type="hidden",id="width",value=width)
+            input(type="hidden",id="height",value=height)
+            input(type="hidden",id="location",value=location)
+            input#synctext
+            input(type="submit",value="Post")
